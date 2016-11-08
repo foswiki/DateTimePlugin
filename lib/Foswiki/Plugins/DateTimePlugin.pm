@@ -217,6 +217,8 @@ sub _formatDateTime {
             # try to match long month names
             $dateStr =~ s/($monthLongNamesReStr)/$fullMonth2IsoMonth{$1}/g;
             $secondsSince1970 = Foswiki::Time::parseTime($dateStr);
+            # fallback if $dateStr couldn't be parsed
+            $secondsSince1970 = 0 unless defined $secondsSince1970;
         }
     }
     else {
